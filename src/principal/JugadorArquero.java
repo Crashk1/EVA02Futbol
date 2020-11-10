@@ -6,9 +6,9 @@ public class JugadorArquero extends Jugador{
 	private Integer penalesAtajados;
 	private Integer vallasInvictas; 
 	
-	public JugadorArquero(String nombreYapellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
+	public JugadorArquero(String nombreYapellido, String equipo, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
 			Integer tarjetasRojas, Integer balonesAtajados, Integer penalesAtajados, Integer vallasInvictas) {
-		super(nombreYapellido, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
+		super(nombreYapellido, equipo, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
 		
 		this.balonesAtajados = balonesAtajados;
 		this.penalesAtajados = penalesAtajados;
@@ -18,6 +18,53 @@ public class JugadorArquero extends Jugador{
 	public JugadorArquero(String nombreYapellido) {
 		super(nombreYapellido);
 		
+	}
+	
+	public Integer actualizarHistorialBalonesAtajados() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).balonesAtajadosPorJugador(this.getNombreYApellido());
+		}
+		this.balonesAtajados = aux;
+		return balonesAtajados;
+	}
+	
+	public Integer actualizarHistorialPenalesAtajados() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).penalesAtajadosPorJugador(this.getNombreYApellido());
+		}
+		this.penalesAtajados = aux;
+		return penalesAtajados;
+	}
+	
+	public Integer actualizarHistorialVallasInvictas() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).tuvoVallaInvicta(this.getNombreYApellido());
+		}
+		this.vallasInvictas = aux;
+		return vallasInvictas;
+	}
+	
+	public void actualizarHistorialCompleto() {
+		this.actualizarHistorialBalonesAtajados();
+		this.actualizarHistorialPenalesAtajados();
+		this.actualizarHistorialVallasInvictas();
+		this.actualizarHistorialTarjetasAmarillas();
+		this.actualizarHistorialTarjetasRojas();
+	}
+	
+	public void atajoBalon() {
+		balonesAtajados++;
+	}
+	
+	public void atajoPenal() {
+		penalesAtajados++;
+	}
+	
+	public void tuvoVallaInvicta() {
+		vallasInvictas++;
 	}
 	
 	public Integer getBalonesAtajados() {

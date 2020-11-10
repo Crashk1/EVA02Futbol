@@ -6,9 +6,9 @@ public class JugadorDelantero extends Jugador{
 	private Integer tirosAlArco;
 	private Integer asistencias;
 
-	public JugadorDelantero(String nombreYapellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
+	public JugadorDelantero(String nombreYapellido, String equipo, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
 			Integer tarjetasRojas, Integer goles, Integer tirosAlArco, Integer asistencias) {
-		super(nombreYapellido, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
+		super(nombreYapellido, equipo, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
 		
 		this.goles = goles;
 		this.tirosAlArco = tirosAlArco;
@@ -19,7 +19,57 @@ public class JugadorDelantero extends Jugador{
 		super(nombreYapellido);
 		
 	}
+	
+	public Integer actualizarHistorialGoles() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).golesHechosPorJugador(this.getNombreYApellido());
+		}
+		this.goles = aux;
+		return goles;
+	}
+	
+	public Integer actualizarHistorialTirosAlArco() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).tirosAlArcoHechosPorJugador(this.getNombreYApellido());
+		}
+		this.tirosAlArco = aux;
+		return tirosAlArco;
+	}
+	
+	public Integer actualizarHistorialAsistencias() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).asistenciasHechasPorJugador(this.getNombreYApellido());
+		}
+		this.asistencias = aux;
+		return asistencias;
+	}
+	
+	public void actualizarHistorialCompleto() {
+		this.actualizarHistorialAsistencias();
+		this.actualizarHistorialGoles();
+		this.actualizarHistorialTirosAlArco();
+		this.actualizarHistorialTarjetasAmarillas();
+		this.actualizarHistorialTarjetasRojas();
+	}
+	
+	public Integer golesYAsistenciasTotales() {
+		return goles + asistencias;
+	}
+	
+	public void cobrarAsitencia() {
+		asistencias++;
+	}
 
+	public void cobrarTiroAlArco() {
+		tirosAlArco++;
+	}
+	
+	public void cobrarGol() {
+		goles++;
+	}
 	
 	public Integer getGoles() {
 		return goles;

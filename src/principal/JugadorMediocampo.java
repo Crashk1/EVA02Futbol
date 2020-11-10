@@ -6,9 +6,9 @@ public class JugadorMediocampo extends Jugador{
 	private Integer pasesCorrectos;
 	private Integer intercepciones;
 	
-	public JugadorMediocampo(String nombreYapellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
+	public JugadorMediocampo(String nombreYapellido, String equipo, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
 			Integer tarjetasRojas, Integer asistencias, Integer pasesCorrectos, Integer intercepciones) {
-		super(nombreYapellido, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
+		super(nombreYapellido, equipo, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
 		
 		this.asistencias = asistencias;
 		this.pasesCorrectos = pasesCorrectos;
@@ -18,6 +18,49 @@ public class JugadorMediocampo extends Jugador{
 	public JugadorMediocampo(String nombreYapellido) {
 		super(nombreYapellido);
 		
+	}
+	
+	public Integer actualizarHistorialAsistencias() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).asistenciasHechasPorJugador(this.getNombreYApellido());
+		}
+		this.asistencias = aux;
+		return asistencias;
+	}
+	
+	public Integer actualizarHistorialPasesCorrectos() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).pasesCorrectosHechosPorJugador(this.getNombreYApellido());
+		}
+		this.pasesCorrectos = aux;
+		return pasesCorrectos;
+	}
+	
+	public Integer actualizarHistorialIntercepciones() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).intercepcionesHechasPorJugador(this.getNombreYApellido());
+		}
+		this.intercepciones = aux;
+		return intercepciones;
+	}
+	
+	public void actualizarHistorialCompleto() {
+		
+	}
+	
+	public void cobrarAsistencia() {
+		asistencias++;
+	}
+	
+	public void cobrarPaseCorrecto() {
+		pasesCorrectos++;
+	}
+	
+	public void cobrarIntercepcion() {
+		intercepciones++;
 	}
 	
 	public Integer getAsistencias() {

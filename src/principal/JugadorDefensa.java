@@ -6,9 +6,9 @@ public class JugadorDefensa extends Jugador{
 	private Integer balonesRobados;
 	private Integer tiros;
 	
-	public JugadorDefensa(String nombreYapellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
+	public JugadorDefensa(String nombreYapellido, String equipo, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
 			Integer tarjetasRojas, Integer intercepciones, Integer balonesRobados, Integer tiros) {
-		super(nombreYapellido, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
+		super(nombreYapellido, equipo, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
 		
 		this.intercepciones = intercepciones;
 		this.balonesRobados = balonesRobados;
@@ -18,6 +18,53 @@ public class JugadorDefensa extends Jugador{
 	public JugadorDefensa(String nombreYapellido) {
 		super(nombreYapellido);
 		
+	}
+	
+	public Integer actualizarHistorialIntercepciones() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).intercepcionesHechasPorJugador(this.getNombreYApellido());
+		}
+		this.intercepciones = aux;
+		return intercepciones;
+	}
+	
+	public Integer actualizarHistorialBalonesRobados() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).balonesRobadosPorJugador(this.getNombreYApellido());
+		}
+		this.balonesRobados = aux;
+		return balonesRobados;
+	}
+	
+	public Integer actualizarHistorialTIros() {
+		Integer aux = 0;
+		for (int i = 0; i < this.partidosJugados.size(); i++) {
+			aux += this.partidosJugados.get(i).tirosHechosPorJugador(this.getNombreYApellido());
+		}
+		this.tiros = aux;
+		return tiros;
+	}
+	
+	public void actualizarHistorialCompleto() {
+		this.actualizarHistorialBalonesRobados();
+		this.actualizarHistorialIntercepciones();
+		this.actualizarHistorialTIros();
+		this.actualizarHistorialTarjetasAmarillas();
+		this.actualizarHistorialTarjetasRojas();
+	}
+	
+	public void cobrarIntercepcion() {
+		intercepciones++;
+	}
+	
+	public void cobrarRoboDeBalon() {
+		balonesRobados++;
+	}
+	
+	public void cobrarTiro() {
+		tiros++;
 	}
 	
 	public Integer getIntercepciones() {
