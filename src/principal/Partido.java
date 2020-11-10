@@ -17,7 +17,7 @@ public class Partido {
 	
 	public Partido(Equipo uno, Equipo dos) {
 		this.uno= uno;
-		this.dos=dos;
+		this.dos= dos;
 	}
 	
 	public void marcarGol(Equipo equipo) {
@@ -28,10 +28,12 @@ public class Partido {
 			this.golesEqui2++;
 		}
 	}
+	
 	public void marcador() {
 		System.out.println("El marcador es: " +  this.uno.getNombreEquipo() + "" + this.golesEqui1 + "|" + this.dos.getNombreEquipo()+ "" + this.golesEqui2 );
 
 	}
+	
 	public void finalizarPartido() {
 		marcador();
 		if(this.golesEqui1>this.golesEqui2) {
@@ -42,11 +44,23 @@ public class Partido {
 		}
 		
 	}
+	
 	public void agregarDelantero(JugadorDelantero jugador) {
 		delanterosActivos.add(jugador);
 	}
 	
-	public void cobrarTarjetaAmarillaAJugador(String minuto, String nombreYapellido, String posicion) {
+	public String getEquipoGanador() {
+		if (golesEqui1 > golesEqui2)
+			return uno.getNombreEquipo();
+		else if (golesEqui1 < golesEqui2) {
+			return uno.getNombreEquipo();
+		}
+		else {
+			return "Empate";
+		}
+	}
+	
+	public void cobrarTarjetaAJugador(String minuto, String nombreYapellido, String posicion, String tarjeta) {
 		this.tarjetasAmarillasCobradas.add(minuto);
 		this.tarjetasAmarillasCobradas.add(nombreYapellido);
 		
@@ -54,28 +68,48 @@ public class Partido {
 		case "delantero":
 			for (int i = 0; i < delanterosActivos.size(); i++) {
 				if (delanterosActivos.get(i).getNombreYApellido() == nombreYapellido) {
-					delanterosActivos.get(i).cobrarTarjetaAmarilla();
+					if (tarjeta == "amarilla") {
+						delanterosActivos.get(i).cobrarTarjetaAmarilla();
+					}
+					else if (tarjeta == "roja") {
+						delanterosActivos.get(i).cobrarTarjetaRoja();
+					}
 				}
 			}
 			break;
 		case "mediocampo":
 			for (int i = 0; i < mediocampistasActivos.size(); i++) {
 				if (mediocampistasActivos.get(i).getNombreYApellido() == nombreYapellido) {
-					mediocampistasActivos.get(i).cobrarTarjetaAmarilla();
+					if (tarjeta == "amarilla") {
+						mediocampistasActivos.get(i).cobrarTarjetaAmarilla();
+					}
+					else if (tarjeta == "roja") {
+						mediocampistasActivos.get(i).cobrarTarjetaRoja();
+					}
 				}
 			}
 			break;
 		case "defensa":
 			for (int i = 0; i < defensasActivos.size(); i++) {
 				if (defensasActivos.get(i).getNombreYApellido() == nombreYapellido) {
-					defensasActivos.get(i).cobrarTarjetaAmarilla();
+					if (tarjeta == "amarilla") {
+						defensasActivos.get(i).cobrarTarjetaAmarilla();
+					}
+					else if (tarjeta == "roja") {
+						defensasActivos.get(i).cobrarTarjetaRoja();
+					}
 				}
 			}
 			break;
 		case "arquero":
 			for (int i = 0; i < arquerosActivos.size(); i++) {
 				if (arquerosActivos.get(i).getNombreYApellido() == nombreYapellido) {
-					arquerosActivos.get(i).cobrarTarjetaAmarilla();
+					if (tarjeta == "amarilla") {
+						arquerosActivos.get(i).cobrarTarjetaAmarilla();
+					}
+					else if (tarjeta == "roja") {
+						arquerosActivos.get(i).cobrarTarjetaRoja();
+					}
 				}
 			}
 			break;

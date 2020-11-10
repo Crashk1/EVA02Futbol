@@ -53,7 +53,7 @@ public class TestJugador {
 		
 		octavos1.agregarDelantero(LionelMessi);
 		
-		octavos1.cobrarTarjetaAmarillaAJugador("42", "Lionel Messi", "delantero");
+		octavos1.cobrarTarjetaAJugador("42", "Lionel Messi", "delantero", "amarilla");
 		
 		LionelMessi.agregarPartidoJugado(octavos1);
 		LionelMessi.actualizarHistorialTarjetasAmarillas();

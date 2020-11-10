@@ -63,7 +63,9 @@ public class Jugador {
 	public Integer getPartidosGanados() {
 		Integer aux = 0;
 		for (int i = 0; i < partidosJugados.size(); i++){
-			aux += (partidosJugados.get(i).getEquipoGanador() == this.equipo);
+			if (partidosJugados.get(i).getEquipoGanador() == this.equipo) {
+				aux++;
+			}
 		}
 		tarjetasAmarillas = aux;
 		return tarjetasAmarillas;
