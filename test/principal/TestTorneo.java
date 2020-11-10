@@ -11,25 +11,21 @@ public class TestTorneo {
 	@Test
 	public void testQuePermitaCrearUnTorneo() {
 		
-		Torneo torneo1 = new Torneo("Copa Libertadores", 20);
+		Torneo torneo1 = new Torneo("Copa Libertadores");
 		
 		String nombreProbar = "Copa Libertadores";
 		String nombreActual = torneo1.getNombreTorneo();
 		
 		
 		assertEquals(nombreProbar, nombreActual);
-		
-		Integer capacidadProbar = 20;
-		Integer capacidadActual = torneo1.getTamañoTorneo();
-		
-		assertEquals(capacidadProbar, capacidadActual);
+	
 		
 	}
 	
 	@Test
 	public void testQuePermitaAgregarEquiposAlTorneo() {
 		
-		Torneo torneo1 = new Torneo("Copa Libertadores", 20);
+		Torneo torneo1 = new Torneo("Copa Libertadores");
 		Equipo e1 = new Equipo("Boca", 5, 2, 0.0, 1);
 		Equipo e2 = new Equipo("Racing", 1, 154, 0.0, 2);
 		Equipo e3 = new Equipo("River", 0, 50, 0.0, 3);

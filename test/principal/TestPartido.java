@@ -9,8 +9,10 @@ public class TestPartido {
 	@Test
 	public void testQueAgregueDelanteroCorrectamente() {
 		
-		JugadorDelantero LionelMessi = new JugadorDelantero("Lionel Messi", 1500000.0, 33, 10, 0, 0, 0, 0, 0);
-		Partido octavos1 = new Partido();
+		JugadorDelantero LionelMessi = new JugadorDelantero("Lionel Messi", "Barcelona", 1500000.0, 33, 10, 0, 0, 0, 0, 0);
+		Equipo barcelona = new Equipo("Barcelona", 5, 2, 0.0, 1);
+		Equipo madrid = new Equipo("Madrid", 5, 2, 0.0, 1);
+		Partido octavos1 = new Partido(barcelona, madrid);
 		
 		octavos1.agregarDelantero(LionelMessi);
 		
@@ -24,8 +26,10 @@ public class TestPartido {
 	@Test
 	public void testQueCobreAmarillaCorrectamente() {
 		
-		JugadorDelantero LionelMessi = new JugadorDelantero("Lionel Messi", 1500000.0, 33, 10, 0, 0, 0, 0, 0);
-		Partido octavos1 = new Partido();
+		JugadorDelantero LionelMessi = new JugadorDelantero("Lionel Messi", "Barcelona", 1500000.0, 33, 10, 0, 0, 0, 0, 0);
+		Equipo barcelona = new Equipo("Barcelona", 5, 2, 0.0, 1);
+		Equipo madrid = new Equipo("Madrid", 5, 2, 0.0, 1);
+		Partido octavos1 = new Partido(barcelona, madrid);
 		
 		octavos1.agregarDelantero(LionelMessi);
 		

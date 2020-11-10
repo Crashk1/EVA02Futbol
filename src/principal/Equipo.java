@@ -3,7 +3,7 @@ package principal;
 import java.util.TreeSet;
 
 
-public class Equipo implements Comparable<Equipo> {
+public class Equipo implements Comparable <Equipo> {
 
 	private String nombreEquipo;
 	private TreeSet<Jugador> jugadoresEnEquipo;
