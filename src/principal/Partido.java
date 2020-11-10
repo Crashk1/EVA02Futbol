@@ -30,17 +30,19 @@ public class Partido {
 	}
 	
 	public void marcador() {
-		System.out.println("El marcador es: " +  this.uno.getNombreEquipo() + "" + this.golesEqui1 + "|" + this.dos.getNombreEquipo()+ "" + this.golesEqui2 );
+		System.out.println("El marcador es: | " +  this.uno.getNombreEquipo() + " = " + this.golesEqui1 + " | " + this.dos.getNombreEquipo()+ " = " + this.golesEqui2+ " | " );
 
 	}
 	
 	public void finalizarPartido() {
 		marcador();
 		if(this.golesEqui1>this.golesEqui2) {
-			this.uno.setPartidosGanados(1);
+			this.uno.setPartidosGanados(uno.getPartidosGanados()+1);
+			this.dos.setPartidosPerdidos(dos.getPartidosPerdidos()+1);
 		}
 		if(this.golesEqui1<this.golesEqui2) {
-			this.dos.setPartidosGanados(1);
+			this.dos.setPartidosGanados(dos.getPartidosGanados()+1);
+			this.uno.setPartidosPerdidos(uno.getPartidosPerdidos()+1);
 		}
 		
 	}
@@ -134,6 +136,13 @@ public class Partido {
 			}
 		}
 		return aux;
+	}
+	
+	public int getGolesTotales() {
+		
+		Integer golesTotales = this.golesEqui1 + this.golesEqui2;
+		
+		return golesTotales;
 	}
 	
 }

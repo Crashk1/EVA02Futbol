@@ -85,7 +85,7 @@ public class Equipo implements Comparable <Equipo> {
 	@Override
 	public String toString() {
 		
-		return "Equipo [Nombre del equipo ="+ nombreEquipo + ", partidos ganados =" +partidosGanados+ ", partidos perdidos ="+partidosPerdidos+", codigo del equipo ="+codEquipo+" ] ";
+		return "Equipo [Nombre del equipo = "+ nombreEquipo + ", partidos ganados = " +partidosGanados+ ", partidos perdidos = "+partidosPerdidos+", codigo del equipo = "+codEquipo+" ] ";
 	}
 	
 	@Override
