@@ -48,8 +48,12 @@ public class JugadorMediocampo extends Jugador{
 	}
 	
 	public void actualizarHistorialCompleto() {
-		
-	}
+		this.actualizarHistorialAsistencias();
+		this.actualizarHistorialPasesCorrectos();
+		this.actualizarHistorialIntercepciones();
+		this.actualizarHistorialTarjetasAmarillas();
+		this.actualizarHistorialTarjetasRojas();
+		}
 	
 	public void cobrarAsistencia() {
 		asistencias++;

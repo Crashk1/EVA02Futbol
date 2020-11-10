@@ -39,7 +39,7 @@ public class TestJugador {
 	
 	
 	@Test 
-	public void testQueActualiceTarjetasCorrectamente() {
+	public void testQueActualiceElHistorialCorrectamente() {
 		
 		JugadorDelantero LionelMessi = new JugadorDelantero("Lionel Messi", "Barcelona", 1500000.0, 33, 10, 23, 0, 0, 0, 0);
 		Equipo barcelona = new Equipo("Barcelona", 5, 2, 0.0, 1);
@@ -54,13 +54,18 @@ public class TestJugador {
 		octavos1.agregarDelantero(LionelMessi);
 		
 		octavos1.cobrarTarjetaAJugador("42", "Lionel Messi", "delantero", "amarilla");
+		octavos1.cobrarAccion("Lionel Messi", "delantero", "gol");
 		
 		LionelMessi.agregarPartidoJugado(octavos1);
 		LionelMessi.actualizarHistorialTarjetasAmarillas();
+		LionelMessi.actualizarHistorialGoles();
 		
 		Integer amarillasEsperadas = 1;
 		Integer amarillasJugador = LionelMessi.getTarjetasAmarillas();
+		Integer golesEsperados= 1;
+		Integer golesJugador= LionelMessi.getGoles();
 		
 		assertEquals(amarillasEsperadas, amarillasJugador);
+		assertEquals(golesEsperados,golesJugador);
 	}
 }
