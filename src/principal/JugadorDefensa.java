@@ -6,21 +6,19 @@ public class JugadorDefensa extends Jugador{
 	private Integer balonesRobados;
 	private Integer tiros;
 	
-	
-	public JugadorDefensa(String nombre, String apellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
+	public JugadorDefensa(String nombreYapellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
 			Integer tarjetasRojas, Integer intercepciones, Integer balonesRobados, Integer tiros) {
-		super(nombre, apellido, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
+		super(nombreYapellido, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
 		
 		this.intercepciones = intercepciones;
 		this.balonesRobados = balonesRobados;
 		this.tiros = tiros;
 	}
 	
-	public JugadorDefensa(String nombre, String apellido) {
-		super(nombre, apellido);
+	public JugadorDefensa(String nombreYapellido) {
+		super(nombreYapellido);
 		
 	}
-	
 	
 	public Integer getIntercepciones() {
 		return intercepciones;
@@ -50,4 +48,40 @@ public class JugadorDefensa extends Jugador{
 		this.tiros = tiros;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((balonesRobados == null) ? 0 : balonesRobados.hashCode());
+		result = prime * result + ((intercepciones == null) ? 0 : intercepciones.hashCode());
+		result = prime * result + ((tiros == null) ? 0 : tiros.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		JugadorDefensa other = (JugadorDefensa) obj;
+		if (balonesRobados == null) {
+			if (other.balonesRobados != null)
+				return false;
+		} else if (!balonesRobados.equals(other.balonesRobados))
+			return false;
+		if (intercepciones == null) {
+			if (other.intercepciones != null)
+				return false;
+		} else if (!intercepciones.equals(other.intercepciones))
+			return false;
+		if (tiros == null) {
+			if (other.tiros != null)
+				return false;
+		} else if (!tiros.equals(other.tiros))
+			return false;
+		return true;
+	}
 }

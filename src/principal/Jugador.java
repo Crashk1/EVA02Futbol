@@ -1,28 +1,25 @@
 package principal;
 
-import java.util.TreeSet;
+import java.util.ArrayList;
 
 public class Jugador {
 
-	private String nombre;
-	private String apellido;
+	private String nombreYapellido;
 	private Double salario;
 	private Integer edad;
 	private Integer numero;
 	private Integer tarjetasAmarillas;
 	private Integer tarjetasRojas;
-	private TreeSet <Partido> partidosJugados = new TreeSet <Partido>();
-	private TreeSet <Torneo> torneosJugados = new TreeSet <Torneo>();
+	private ArrayList <Partido> partidosJugados = new ArrayList <Partido>();
+	private ArrayList <Torneo> torneosJugados = new ArrayList <Torneo>();
 	
-	public Jugador (String nombre, String apellido) {
-		this.nombre = nombre;
-		this.apellido = apellido;
+	public Jugador (String nombreYapellido) {
+		this.nombreYapellido = nombreYapellido;
 		
 	}
 	
-	public Jugador (String nombre, String apellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas, Integer tarjetasRojas) {
-		this.nombre = nombre;
-		this.apellido = apellido;
+	public Jugador (String nombreYapellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas, Integer tarjetasRojas) {
+		this.nombreYapellido = nombreYapellido;
 		this.salario = salario;
 		this.edad = edad;
 		this.numero = numero;
@@ -33,15 +30,32 @@ public class Jugador {
 	
 	public Integer actualizarTarjetasAmarillas() {
 		Integer aux = 0;
-		for (int i : partidosJugados.tarjetasAmarillasCometidasPor("nombre", "apellido")) {
-			aux += i;
+		for (int i = 0; i < partidosJugados.size(); i++){
+			aux += partidosJugados.get(i).tarjetasAmarillasCometidasPorJugador(this.nombreYapellido);
 		}
 		tarjetasAmarillas = aux;
 		return tarjetasAmarillas;
 	}
-	
+
 	public Integer actualizarTarjetasRojas() {
-		
+		Integer aux = 0;
+		for (int i = 0; i < partidosJugados.size(); i++){
+			aux += partidosJugados.get(i).tarjetasRojasCometidasPorJugador(this.nombreYapellido);
+		}
+		tarjetasRojas = aux;
+		return tarjetasRojas;
+	}
+	
+	public void cobrarTarjetaAmarilla() {
+		tarjetasAmarillas++;
+	}
+	
+	public void cobrarTarjetaRoja() {
+		tarjetasRojas++;
+	}
+	
+	public void agregarPartidoJugado(Partido partido) {
+		partidosJugados.add(partido);
 	}
 	
 	public void aumentarSalario(Double aumento) {
@@ -52,6 +66,14 @@ public class Jugador {
 		return tarjetasAmarillas + tarjetasRojas;
 	}
 	
+	public Integer getTarjetasAmarillas() {
+		return tarjetasAmarillas;
+	}
+	
+	public Integer getTarjetasRojas() {
+		return tarjetasRojas;
+	}
+	
 	public Integer getNumeroPartidosJugados() {
 		return partidosJugados.size();
 	}
@@ -60,22 +82,22 @@ public class Jugador {
 		return torneosJugados.size();
 	}
 	
-	public String getNombre() {
-		return nombre;
+	public String getNombreYApellido() {
+		return nombreYapellido;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreYApellido(String nombreYapellido) {
+		this.nombreYapellido = nombreYapellido;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public Integer getEdad() {
+		return edad;
 	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	
+	public void setEdad(Integer edad) {
+		this.edad = edad;
 	}
-
+	
 	public Double getSalario() {
 		return salario;
 	}
@@ -92,4 +114,71 @@ public class Jugador {
 		this.numero = numero;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((edad == null) ? 0 : edad.hashCode());
+		result = prime * result + ((nombreYapellido == null) ? 0 : nombreYapellido.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + ((partidosJugados == null) ? 0 : partidosJugados.hashCode());
+		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
+		result = prime * result + ((tarjetasAmarillas == null) ? 0 : tarjetasAmarillas.hashCode());
+		result = prime * result + ((tarjetasRojas == null) ? 0 : tarjetasRojas.hashCode());
+		result = prime * result + ((torneosJugados == null) ? 0 : torneosJugados.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jugador other = (Jugador) obj;
+		if (edad == null) {
+			if (other.edad != null)
+				return false;
+		} else if (!edad.equals(other.edad))
+			return false;
+		if (nombreYapellido == null) {
+			if (other.nombreYapellido != null)
+				return false;
+		} else if (!nombreYapellido.equals(other.nombreYapellido))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		if (partidosJugados == null) {
+			if (other.partidosJugados != null)
+				return false;
+		} else if (!partidosJugados.equals(other.partidosJugados))
+			return false;
+		if (salario == null) {
+			if (other.salario != null)
+				return false;
+		} else if (!salario.equals(other.salario))
+			return false;
+		if (tarjetasAmarillas == null) {
+			if (other.tarjetasAmarillas != null)
+				return false;
+		} else if (!tarjetasAmarillas.equals(other.tarjetasAmarillas))
+			return false;
+		if (tarjetasRojas == null) {
+			if (other.tarjetasRojas != null)
+				return false;
+		} else if (!tarjetasRojas.equals(other.tarjetasRojas))
+			return false;
+		if (torneosJugados == null) {
+			if (other.torneosJugados != null)
+				return false;
+		} else if (!torneosJugados.equals(other.torneosJugados))
+			return false;
+		return true;
+	}
+	
 }
