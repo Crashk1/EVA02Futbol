@@ -3,7 +3,11 @@ package principal;
 import java.util.ArrayList;
 
 public class Partido {
-
+	
+	private Equipo uno;
+	private Equipo dos;
+	private Integer golesEqui1=0;
+	private Integer golesEqui2=0;
 	protected ArrayList <String> tarjetasAmarillasCobradas = new ArrayList <String>();
 	private ArrayList <String> tarjetasRojasCobradas = new ArrayList <String>();
 	protected ArrayList <JugadorDelantero> delanterosActivos = new ArrayList <JugadorDelantero>();
@@ -11,7 +15,33 @@ public class Partido {
 	private ArrayList <JugadorDefensa> defensasActivos = new ArrayList <JugadorDefensa>();
 	private ArrayList <JugadorArquero> arquerosActivos = new ArrayList <JugadorArquero>();
 	
+	public Partido(Equipo uno, Equipo dos) {
+		this.uno= uno;
+		this.dos=dos;
+	}
 	
+	public void marcarGol(Equipo equipo) {
+		if(equipo.equals(this.uno)) {
+			this.golesEqui1++;
+		}
+		if(equipo.equals(this.dos)) {
+			this.golesEqui2++;
+		}
+	}
+	public void marcador() {
+		System.out.println("El marcador es: " +  this.uno.getNombreEquipo() + "" + this.golesEqui1 + "|" + this.dos.getNombreEquipo()+ "" + this.golesEqui2 );
+
+	}
+	public void finalizarPartido() {
+		marcador();
+		if(this.golesEqui1>this.golesEqui2) {
+			this.uno.setPartidosGanados(1);
+		}
+		if(this.golesEqui1<this.golesEqui2) {
+			this.dos.setPartidosGanados(1);
+		}
+		
+	}
 	public void agregarDelantero(JugadorDelantero jugador) {
 		delanterosActivos.add(jugador);
 	}

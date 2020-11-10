@@ -1,25 +1,21 @@
 package principal;
 
 import java.util.TreeSet;
+
+import static org.junit.Assert.assertTrue;
+
 import java.util.Set;
 
 public class Torneo {
 
 	private String nombreTorneo;
-	private Integer tamañoTorneo;
-	private Set<Equipo> equipos;
+	private TreeSet <Equipo> equipos= new TreeSet<Equipo>();
+
 	
 	
-	public Torneo(String nombreDelTorneo, Integer tamañoDelTorneo) {
-		
+	public Torneo(String nombreDelTorneo) {
 		this.nombreTorneo = nombreDelTorneo;
-		this.tamañoTorneo = tamañoDelTorneo;
-		
-		this.setEquipos(new TreeSet<Equipo>());
-		
 	}
-
-
 
 	public String getNombreTorneo() {
 		return nombreTorneo;
@@ -30,25 +26,26 @@ public class Torneo {
 		this.nombreTorneo = nombreTorneo;
 	}
 
-
-	public Integer getTamañoTorneo() {
-		return tamañoTorneo;
-	}
-
-
-	public void setTamañoTorneo(Integer tamañoTorneo) {
-		this.tamañoTorneo = tamañoTorneo;
-	}
-
-
-
 	public Set<Equipo> getEquipos() {
 		return equipos;
 	}
+	
+/*	public TreeSet <Equipo> tablaDeposiciones(){
+		Integer mayor=0;
+		int i=0;
+		for (Equipo j : equipos) {
+		if(i==0)
+		mayor=j.getPartidosGanados();
+		else {
+		assertTrue(mayor<j.getPartidosGanados());
+		mayor=j.getPartidosGanados();
+		}
+		i++;
+		}
+		}
+		*/
 
-
-
-	public void setEquipos(Set<Equipo> equipos) {
+	public void setEquipos(TreeSet<Equipo> equipos) {
 		this.equipos = equipos;
 	}
 	

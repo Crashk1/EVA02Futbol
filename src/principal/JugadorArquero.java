@@ -8,8 +8,8 @@ public class JugadorArquero extends Jugador{
 	
 	public JugadorArquero(String nombreYapellido, Double salario, Integer edad, Integer numero, Integer tarjetasAmarillas,
 			Integer tarjetasRojas, Integer balonesAtajados, Integer penalesAtajados, Integer vallasInvictas) {
-		super(nombreYapellido, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
 		
+		super(nombreYapellido, salario, edad, numero, tarjetasAmarillas, tarjetasRojas);
 		this.balonesAtajados = balonesAtajados;
 		this.penalesAtajados = penalesAtajados;
 		this.vallasInvictas = vallasInvictas;

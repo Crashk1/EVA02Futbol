@@ -3,7 +3,7 @@ package principal;
 import java.util.TreeSet;
 
 
-public class Equipo implements Comparable<Equipo> {
+public class Equipo implements Comparable <Equipo> {
 
 	private String nombreEquipo;
 	private TreeSet<Jugador> jugadoresEnEquipo;
@@ -11,7 +11,7 @@ public class Equipo implements Comparable<Equipo> {
 	private Integer partidosPerdidos;
 	private Double gastosTotalesDelEquipo;
 	private Integer codEquipo;
-	private TreeSet<Tecnico> tecnico;
+	
 	
 	public Equipo(String nombreDelEquipo, Integer partidosGanados, Integer partidosPerdidos, Double gastosTotalesDelEquipo, Integer codEquipo) {
 		
@@ -21,29 +21,7 @@ public class Equipo implements Comparable<Equipo> {
 		this.setGastosTotalesDelEquipo(gastosTotalesDelEquipo);
 		this.codEquipo = codEquipo;
 		jugadoresEnEquipo = new TreeSet<Jugador>();
-		tecnico = new TreeSet<Tecnico>();
-	}
-	
-	public Boolean contratarTecnico(Tecnico tecnicos) {//agrego un tecnico
-		if((tecnico.contains(tecnicos)) || (this.cantTecnicos()>0)) { //si quiero agregar duplicado o si ya existe un tecnico no va a dejar agregar.
-			return false;
-		}
-		else 
-		{
-			return tecnico.add(tecnicos);
-		}
-	}
-	
-	public void echarTecnico() {//dejo el equipo sin tecnico
-		 tecnico.clear();
-	}
-	
-	public TreeSet<Tecnico> getTecnicos() {
-		 return this.tecnico;
-	}
-	
-	public Integer cantTecnicos() {//devuelve la cantidad de tecnicos, no puede ser mayor a 1
-		return tecnico.size();
+		
 	}
 
 
@@ -74,7 +52,7 @@ public class Equipo implements Comparable<Equipo> {
 
 
 	public void setPartidosGanados(Integer partidosGanados) {
-		this.partidosGanados = partidosGanados;
+		this.partidosGanados+=partidosGanados;
 	}
 
 
@@ -84,7 +62,7 @@ public class Equipo implements Comparable<Equipo> {
 
 
 	public void setPartidosPerdidos(Integer partidosPerdidos) {
-		this.partidosPerdidos = partidosPerdidos;
+		this.partidosPerdidos+= partidosPerdidos;
 	}
 
 
