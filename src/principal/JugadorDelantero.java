@@ -96,6 +96,14 @@ public class JugadorDelantero extends Jugador{
 	}
 	
 	@Override
+	public String toString() {
+		return "El Jugador se llama " + this.getNombreYApellido() + ", tiene " + this.getEdad() + " años, y juega principalmente como Delantero \n"
+				+ "Su salario es de " + this.getSalario() + " dolares por año, juega con el numero de camiseta " + this.getNumero() + " y juega para el equipo de " + this.getEquipo() + "\n"
+				+ "En su historial recibio un total de " + this.getTarjetasAmarillas() + " tarjetas amarillas y un total de " + this.getTarjetasRojas() + " tarjetas rojas \n"
+				+ "Como Delantero, es importante destacar lo siguiente de sus Estadisticas: Hizo un total de " + goles + " goles, " + tirosAlArco + " tiros al arco, y tuvo " + asistencias + " asistencias";
+	}
+	
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

@@ -159,4 +159,84 @@ public class Jugador {
 		this.numero = numero;
 	}
 	
+	@Override
+	public String toString() {
+		return "El Jugador se llama " + nombreYapellido + ", tiene " + edad + " años, y no tiene una posicion o rol definido \n"
+				+ "Su salario es de " + salario + " dolares por año, juega con el numero de camiseta " + numero + " y juega para el equipo de " + equipo + "\n"
+				+ "En su historial recibio un total de " + tarjetasAmarillas + " tarjetas amarillas y un total de " + tarjetasRojas + " tarjetas rojas";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((edad == null) ? 0 : edad.hashCode());
+		result = prime * result + ((equipo == null) ? 0 : equipo.hashCode());
+		result = prime * result + ((nombreYapellido == null) ? 0 : nombreYapellido.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + ((partidosJugados == null) ? 0 : partidosJugados.hashCode());
+		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
+		result = prime * result + ((tarjetasAmarillas == null) ? 0 : tarjetasAmarillas.hashCode());
+		result = prime * result + ((tarjetasRojas == null) ? 0 : tarjetasRojas.hashCode());
+		result = prime * result + ((torneosJugados == null) ? 0 : torneosJugados.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jugador other = (Jugador) obj;
+		if (edad == null) {
+			if (other.edad != null)
+				return false;
+		} else if (!edad.equals(other.edad))
+			return false;
+		if (equipo == null) {
+			if (other.equipo != null)
+				return false;
+		} else if (!equipo.equals(other.equipo))
+			return false;
+		if (nombreYapellido == null) {
+			if (other.nombreYapellido != null)
+				return false;
+		} else if (!nombreYapellido.equals(other.nombreYapellido))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		if (partidosJugados == null) {
+			if (other.partidosJugados != null)
+				return false;
+		} else if (!partidosJugados.equals(other.partidosJugados))
+			return false;
+		if (salario == null) {
+			if (other.salario != null)
+				return false;
+		} else if (!salario.equals(other.salario))
+			return false;
+		if (tarjetasAmarillas == null) {
+			if (other.tarjetasAmarillas != null)
+				return false;
+		} else if (!tarjetasAmarillas.equals(other.tarjetasAmarillas))
+			return false;
+		if (tarjetasRojas == null) {
+			if (other.tarjetasRojas != null)
+				return false;
+		} else if (!tarjetasRojas.equals(other.tarjetasRojas))
+			return false;
+		if (torneosJugados == null) {
+			if (other.torneosJugados != null)
+				return false;
+		} else if (!torneosJugados.equals(other.torneosJugados))
+			return false;
+		return true;
+	}
+	
 }

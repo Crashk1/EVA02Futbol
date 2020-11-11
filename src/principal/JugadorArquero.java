@@ -92,6 +92,14 @@ public class JugadorArquero extends Jugador{
 	}
 
 	@Override
+	public String toString() {
+		return "El Jugador se llama " + this.getNombreYApellido() + ", tiene " + this.getEdad() + " años, y juega principalmente como Arquero \n"
+				+ "Su salario es de " + this.getSalario() + " dolares por año, juega con el numero de camiseta " + this.getNumero() + " y juega para el equipo de " + this.getEquipo() + "\n"
+				+ "En su historial recibio un total de " + this.getTarjetasAmarillas() + " tarjetas amarillas y un total de " + this.getTarjetasRojas() + " tarjetas rojas \n"
+				+ "Como Arquero, es importante destacar sus siguientes estadisticas: Atajo " + balonesAtajados + " balones al arco, " + penalesAtajados + " penales, y jugo un total de " + vallasInvictas + " partidos con la Valla Invicta";
+	}
+	
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

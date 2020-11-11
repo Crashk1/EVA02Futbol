@@ -24,7 +24,7 @@ public class Partido {
 		if(equipo.equals(this.uno)) {
 			this.golesEqui1++;
 		}
-		if(equipo.equals(this.dos)) {
+		else if(equipo.equals(this.dos)) {
 			this.golesEqui2++;
 		}
 	}
@@ -40,15 +40,54 @@ public class Partido {
 			this.uno.setPartidosGanados(uno.getPartidosGanados()+1);
 			this.dos.setPartidosPerdidos(dos.getPartidosPerdidos()+1);
 		}
-		if(this.golesEqui1<this.golesEqui2) {
+		else if(this.golesEqui1<this.golesEqui2) {
 			this.dos.setPartidosGanados(dos.getPartidosGanados()+1);
 			this.uno.setPartidosPerdidos(uno.getPartidosPerdidos()+1);
 		}
-		
 	}
 	
-	public void agregarDelantero(JugadorDelantero jugador) {
-		delanterosActivos.add(jugador);
+	public Boolean agregarDelantero(JugadorDelantero jugador) {
+		if (delanterosActivos.contains(jugador)) {
+			return false;
+		}
+		else {
+			delanterosActivos.add(jugador);
+			jugador.agregarPartidoJugado(this);
+			return true;
+		}
+	}
+	
+	public Boolean agregarMediocampista(JugadorMediocampo jugador) {
+		if (mediocampistasActivos.contains(jugador)) {
+			return false;
+		}
+		else {
+			mediocampistasActivos.add(jugador);
+			jugador.agregarPartidoJugado(this);
+			return true;
+		}
+	}
+	
+	public Boolean agregarDefensa(JugadorDefensa jugador) {
+		if (defensasActivos.contains(jugador)) {
+			return false;
+		}
+		else {
+			defensasActivos.add(jugador);
+			jugador.agregarPartidoJugado(this);
+			return true;
+		}
+	}
+	
+	public Boolean agregarArquero(JugadorArquero jugador) {
+		if (arquerosActivos.contains(jugador)) {
+			return false;
+		}
+		else {
+			arquerosActivos.add(jugador);
+			jugador.agregarPartidoJugado(this);
+			return true;
+		}
 	}
 	
 	public String getEquipoGanador() {
@@ -144,6 +183,7 @@ public class Partido {
 		
 		return golesTotales;
 	}
+	
 	public void cobrarAccion(String nombreYApellido,String posicion, String accion) {
 		this.accion.add(accion + nombreYApellido);
 		
@@ -158,10 +198,10 @@ public class Partido {
 						delanterosActivos.get(i).cobrarGol();
 					}
 					 if (accion == "tiro") {
-							delanterosActivos.get(i).cobrarTiroAlArco();
-						}
+						delanterosActivos.get(i).cobrarTiroAlArco();
 					}
 				}
+			}
 			break;
 			
 		case "mediocampo":
@@ -219,134 +259,112 @@ public class Partido {
 
 	public Integer intercepcionesHechasPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("intercepcion" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("intercepcion" + nombreYApellido)) {
+				aux++;
 			}
+		}
 	
 		return aux;
-		
-	
 	}
 
 	public Integer balonesRobadosPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("robo de balon" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("robo de balon" + nombreYApellido)) {
+				aux++;
 			}
-	
+		}
+			
 		return aux;
-		
 	}
 
 	public Integer tirosHechosPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("tiro" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("tiro" + nombreYApellido)) {
+				aux++;
 			}
-		
+		}
 		
 		return aux;
-		
 	}
 
 	public Integer golesHechosPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("gol" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("gol" + nombreYApellido)) {
+				aux++;
 			}
-		
+		}
 		
 		return aux;
 	}
 
 	public Integer tirosAlArcoHechosPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-		
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("tiro" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("tiro" + nombreYApellido)) {
+				aux++;
 			}
-		
+		}
 		
 		return aux;
-		
 	}
 
 	public Integer asistenciasHechasPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("asistencia" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("asistencia" + nombreYApellido)) {
+				aux++;
 			}
+		}
 		
 		return aux;
-		
 	}
 
 	public Integer pasesCorrectosHechosPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("pase correcto" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("pase correcto" + nombreYApellido)) {
+				aux++;
 			}
-		
+		}
 		
 		return aux;
-		
 	}
 
 	public Integer balonesAtajadosPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-	
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("atajada" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("atajada" + nombreYApellido)) {
+				aux++;
 			}
-		
+		}
 		
 		return aux;
-		
 	}
 
 	public Integer penalesAtajadosPorJugador(String nombreYApellido) {
 		Integer aux = 0;
-	
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("penal atajado" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("penal atajado" + nombreYApellido)) {
+				aux++;
 			}
-		
+		}
 		
 		return aux;
-		
 	}
 
 	public Integer tuvoVallaInvicta(String nombreYApellido) {
 		Integer aux = 0;
-	
-				for (int j = 0; j < accion.size(); j++) {
-					if(accion.get(j).equalsIgnoreCase("valla invicta" + nombreYApellido)) {
-						aux++;
-					}
+		for (int j = 0; j < accion.size(); j++) {
+			if(accion.get(j).equalsIgnoreCase("valla invicta" + nombreYApellido)) {
+				aux++;
 			}
-		
+		}
 		
 		return aux;
-		
 	}
 
 	
