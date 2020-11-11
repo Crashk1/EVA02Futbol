@@ -1,5 +1,6 @@
 package principal;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 
@@ -11,7 +12,7 @@ public class Equipo implements Comparable <Equipo> {
 	private Integer partidosPerdidos;
 	private Double gastosTotalesDelEquipo;
 	private Integer codEquipo;
-	
+	private ArrayList<Tecnico>tecnicos;
 	
 	public Equipo(String nombreDelEquipo, Integer partidosGanados, Integer partidosPerdidos, Double gastosTotalesDelEquipo, Integer codEquipo) {
 		
@@ -21,8 +22,30 @@ public class Equipo implements Comparable <Equipo> {
 		this.setGastosTotalesDelEquipo(gastosTotalesDelEquipo);
 		this.codEquipo = codEquipo;
 		jugadoresEnEquipo = new TreeSet<Jugador>();
+		this.tecnicos=new ArrayList<Tecnico>();
 		
 	}
+	
+	public Boolean contratarTecnico(Tecnico tecnicoss) {//agrego un tecnico
+		if((tecnicos.contains(tecnicoss)) || (this.cantTecnicos()>0)) { //si quiero agregar duplicado o si ya existe un tecnico no va a dejar agregar.
+			return false;
+		}
+		else 
+		{
+			return tecnicos.add(tecnicoss);
+		}
+	}
+	
+	public void echarTecnico() {//dejo el equipo sin tecnico
+		 tecnicos.clear();
+	}
+	
+	
+	public Integer cantTecnicos() {//devuelve la cantidad de tecnicos, no puede ser mayor a 1
+		return tecnicos.size();
+	}
+
+
 
 
 	public String getNombreEquipo() {
@@ -40,9 +63,9 @@ public class Equipo implements Comparable <Equipo> {
 	}
 
 
-	public void agregarJugadoresAlEquipo(Jugador jugador) {
+	public Boolean agregarJugadoresAlEquipo(Jugador jugador) {
 		
-		jugadoresEnEquipo.add(jugador);
+		return jugadoresEnEquipo.add(jugador);
 	}
 
 
